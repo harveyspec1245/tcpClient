@@ -6,6 +6,6 @@ setup(
    description='A useful module',
    author='Man Foo',
    author_email='foomail@foo.com',
-   packages=['tcpClientServer'],
+   packages=['client', 'server'],
    install_requires=[],
 )
