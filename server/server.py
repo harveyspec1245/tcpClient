@@ -1,14 +1,9 @@
-import socket
 from threading import *
-
-serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = '127.0.0.1'
-port = 7004
-print('listen on', host, ':', port)
-serversocket.bind((host, port))
+from socket import error as SocketError
+import errno
 
 
-class Client(Thread):
+class Server(Thread):
     def __init__(self, socket, address):
         Thread.__init__(self)
         self.sock = socket
@@ -17,11 +12,15 @@ class Client(Thread):
 
     def run(self):
         while 1:
-            print('Client sent:', self.sock.recv(1024).decode())
-            self.sock.send(b'Oi you sent something to me')
-
-
-serversocket.listen(5)
-while 1:
-    clientsocket, address = serversocket.accept()
-    Client(clientsocket, address)
+            print('2\n')
+            try:
+                _received_data = self.sock.recv(1024).decode()
+                print('Client sent:', _received_data)
+                self.sock.send(b'you sent something to me')
+                #self.sock.close()
+                break
+            except SocketError as e:
+                if e.errno != errno.ECONNRESET:
+                    raise
+                else:
+                    pass
