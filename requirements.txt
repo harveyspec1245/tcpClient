@@ -8,3 +8,4 @@ PyHamcrest==2.0.2
 six==1.15.0
 Twisted==20.3.0
 zope.interface==5.1.2
+wheel==0.35.1
