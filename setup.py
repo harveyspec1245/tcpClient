@@ -1,4 +1,5 @@
-from setuptools import setup
+from setuptools import setup,find_packages
+import sys, os
 
 setup(
    name='tcpClientServer',
@@ -6,6 +7,7 @@ setup(
    description='A useful module',
    author='Man Foo',
    author_email='foomail@foo.com',
-   packages=['client', 'server'],
+   packages=find_packages(),
+   namespace_packages=['client', 'server'],
    install_requires=[],
 )
